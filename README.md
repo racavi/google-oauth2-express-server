@@ -1,4 +1,4 @@
-# express-server-template
+# google-oauth2-express-server
 
 This repository provides a minimalist NodeJS Express server template provided with a middleware that enables all CORS requests and a dependency for managing environment variables via `.env` file.
 
