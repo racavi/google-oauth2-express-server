@@ -1,6 +1,8 @@
 # google-oauth2-express-server
 
-This repository provides a minimalist NodeJS Express server template provided with a middleware that enables all CORS requests and a dependency for managing environment variables via `.env` file.
+This repository backs a minimalist NodeJS Express server template that uses the official Google API Client Library to provide a basic API that implements online OAuth 2.0 authorization code flow for accessing Google APIs. 
+
+The server template is also provided with a middleware that enables all CORS requests and a dependency for managing environment variables via `.env` file.
 
 ## Prerequisites
 
@@ -33,6 +35,13 @@ To test it, create the file `app/.env` and declare the `PORT` environment variab
 PORT=3000
 ```
 
+```lang-makefile
+GOOGLE_CLIENT_ID=<YOUR_CLIENT_ID>
+GOOGLE_CLIENT_SECRET=<YOUR_CLIENT_SECRET>
+GOOGLE_AUTHORIZATION_REDIRECT_URL=<YOUR_REDIRECT_URL>
+GOOGLE_OAUTH2_API_SCOPES=<COMMA_SEPARATED_LIST_OF_OAUTH_2_SCOPES_FOR_GOOGLE_APIS>
+```
+
 ### Run the application
 
 You can run the application by issuing the following command:
@@ -47,5 +56,8 @@ After that, open your web browser of choice and load http://localhost:3000/ to s
 
 - [cors](https://www.npmjs.com/package/cors)
 - [dotenv](https://www.npmjs.com/package/dotenv)
+- [googleapis](https://www.npmjs.com/package/googleapis)
 - [Express](https://www.npmjs.com/package/express)
 - [Node.js](https://nodejs.org/)
+- [OAuth 2.0 Scopes for Google APIs](https://developers.google.com/identity/protocols/oauth2/scopes)
+- [Using Google OAuth 2.0 for Web Server Applications](https://developers.google.com/identity/protocols/oauth2/web-server)
