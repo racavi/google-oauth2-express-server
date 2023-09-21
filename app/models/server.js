@@ -4,6 +4,7 @@ const cors = require('cors');
 class Server {
   #app;
   #port;
+  #authzPath = '/api/v1/authz';
 
   constructor() {
     this.#app = express();
@@ -14,12 +15,17 @@ class Server {
 
   #middlewares() {
     this.#app.use(cors());
+
+    // Read and parse Request body
+    this.#app.use(express.json());
+
   }
 
   #routes() {
     this.#app.get('/', (req, res) => {
       res.send('Hello World!');
     });
+    this.#app.use(this.#authzPath, require('../routes/authz'));
   }
 
   listen() {
