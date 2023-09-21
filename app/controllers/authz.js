@@ -33,6 +33,30 @@ const getAuthzUrl = async (req = request, res = response) => {
     });
 }
 
+// @desc Receives the callback from Google's OAuth 2.0 server.
+// @route POST /api/v1/authz/google/exchange-authz-code
+// @access Public
+const exchangeAuthzCode = async (req = request, res = response) => {
+    const { code } = req.body;
+    if (code) {
+        try {
+            const { tokens } = await oauth2Client.getToken(code);
+            // console.log('tokens:', tokens)
+            const { access_token } = tokens
+            // console.log('access_token:', access_token)
+            return res.status(201).json({
+                access_token
+            })
+        } catch (error) {
+            console.error('Error exchanging authz code for tokens:', error)
+        }
+    }
+    return res.status(400).json({
+        message: 'Bad request'
+    })
+}
+
 module.exports = {
     getAuthzUrl,
+    exchangeAuthzCode,
 }
